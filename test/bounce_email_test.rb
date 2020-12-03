@@ -178,7 +178,16 @@ class BounceEmailTest < Test::Unit::TestCase
   def test_original_message_with_bounced_gmail
     bounce = test_bounce('undeliverable_gmail')
     assert_not_nil bounce.original_mail
-    assert_not_nil bounce.original_mail.message_id
+    assert_equal "CAEivLMBmmXp-4h7XtUzYy6V2KY44SJ_4yy=9u1+D9KaJ1jjcEg@mail.gmail.com", bounce.original_mail.message_id
+    assert_not_nil bounce.original_mail.to
+    assert_not_nil bounce.original_mail.from
+    assert_not_nil bounce.original_mail.subject
+  end
+
+  def test_original_message_lower_case_message_id
+    bounce = test_bounce('tt_1234285668')
+    assert_not_nil bounce.original_mail
+    assert_equal "20090210170747.7895C329E32@Albanis-3.local", bounce.original_mail.message_id
     assert_not_nil bounce.original_mail.to
     assert_not_nil bounce.original_mail.from
     assert_not_nil bounce.original_mail.subject

@@ -306,7 +306,7 @@ module BounceEmail
 
     def extract_and_assign_fields_from(bounce, original)
       if original.message_id.nil?
-        original.add_message_id extract_field_from(original, /^Message-ID:/)
+        original.add_message_id extract_field_from(original, /^Message-I[Dd]:/)
       end
 
       original.from ||= extract_field_from(original, /^From:/)
